@@ -2,13 +2,12 @@
   <div>
     {{message}}
     <button @click="handleClick">点击</button>
-    <h2>{{state.name}}</h2>
-    <h2>{{state.age}}</h2>
+    <h2>{{counter}}</h2>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { ref } from 'vue'
 
 export default {
   props: {
@@ -18,20 +17,17 @@ export default {
     }
   },
   setup() {
-    // reactive 响应式的 返回的是这个对象
-    const state = reactive({
-      name: 'dengwj',
-      age: 22
-    })
+    // ref 返回的一个可变的响应式对象
+    const counter = ref(100)
 
     const handleClick = () => {
-      console.log('点击');
+      console.log(counter)
+      counter.value++
     }
 
     return {
-      counter: 100,
       handleClick,
-      state
+      counter
     }
   }
 }
