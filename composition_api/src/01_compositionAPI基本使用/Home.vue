@@ -2,11 +2,14 @@
   <div>
     {{message}}
     <button @click="handleClick">点击</button>
-    <h2>{{counter}}</h2>
+    <h2>{{state.name}}</h2>
+    <h2>{{state.age}}</h2>
   </div>
 </template>
 
 <script>
+import { reactive } from 'vue'
+
 export default {
   props: {
     message: {
@@ -14,13 +17,12 @@ export default {
       required: true
     }
   },
-  /**
-   * 第一个参数是 props， 第二个参数是 context 上下文
-   * setup 的返回值可以在模板中直接使用，也就是说我们可以通过 setup 的返回值来代替 data 选项
-   */
-  setup(props, { attrs, slots, emit }) {
-    console.log(props.message)
-    console.log(attrs, slots, emit)
+  setup() {
+    // reactive 响应式的 返回的是这个对象
+    const state = reactive({
+      name: 'dengwj',
+      age: 22
+    })
 
     const handleClick = () => {
       console.log('点击');
@@ -28,7 +30,8 @@ export default {
 
     return {
       counter: 100,
-      handleClick
+      handleClick,
+      state
     }
   }
 }
