@@ -1,14 +1,18 @@
 <template>
-  <div>{{messgae}}</div>
+  <div>
+    <Home message='我是 home 组件' />
+  </div>
 </template>
 
 <script>
+import Home from './01_compositionAPI基本使用/Home.vue'
+
 export default {
-  data() {
-    return {
-      messgae: 'nihao'
-    }
+  components: {
+    Home
   },
+  setup() {
+
+  }
 }
 </script>
-
