@@ -10,13 +10,18 @@
 
 <body>
   <div id="app"></div>
-  <script src="./render.js"></script>
 
+  <script src="./render.js"></script>
   <script>
-    h('div', { class: 'dwj' }, [
+    // 1 通过 h 函数创建 vnode
+    const vnode = h('div', { class: 'dwj' }, [
       h('h2', null, '当前计数为：100'),
       h('button', null, '+1')
     ])
+    console.log(vnode) // { tag: 'div', props: {… }, children: Array(2) }
+
+    // 2 通过 mount 函数，将 vnode 挂载到 div#app 上  就是将虚拟 dom 挂载到真实 dom 上
+    mount(vnode, document.querySelector('#app'))
   </script>
 </body>
 
