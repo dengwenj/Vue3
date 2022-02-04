@@ -13,6 +13,7 @@ export default {
     const name = ref('dwj')
     const age = ref(22)
     
+    // 会一上来调用一次，然后回调里面有响应式改变的时候会再次调用
     watchEffect(() => {
       console.log(name.value, age.value);
     })
