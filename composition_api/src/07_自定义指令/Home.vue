@@ -6,8 +6,12 @@
 //     el.focus()
 //   },
 // }
+const time = 1643986468
 </script>
 
 <template>
-  <input type="text" v-focus>
+  <div>
+    <input type="text">
+    <div v-format-time="'YYYY/MM/DD'">{{time}}</div>
+  </div>
 </template>
