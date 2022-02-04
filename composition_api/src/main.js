@@ -2,8 +2,13 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import directives from './08_directives'
+import pluginsObject from './09_plugins/plugins_object'
+import pluginsFunction from './09_plugins/plugins_function'
 
 const app = createApp(App)
+
+app.use(pluginsObject)
+app.use(pluginsFunction)
 
 directives(app)
 
