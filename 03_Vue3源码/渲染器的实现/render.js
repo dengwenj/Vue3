@@ -60,6 +60,7 @@ const patch = (n1, n2) => {
       const oldValue = oldProps[key]
       const newValue = newProps[key]
 
+      // 旧的值不等于新的值
       if (oldValue !== newValue) {
         if (key.startsWith('on')) {
           el.addEventListener(key.slice(2).toLowerCase(), newValue)
@@ -72,10 +73,53 @@ const patch = (n1, n2) => {
     // 删除旧的 props
     for(const key in oldProps) {
       const value = oldProps[key]
-      if (key.startsWith('on')) {
-        el.removeEventListener(key.slice(2).toLowerCase(), value)
+      if (!(key in newProps)) {
+        if (key.startsWith('on')) {
+          el.removeEventListener(key.slice(2).toLowerCase(), value)
+        } else {
+          el.removeAttribute(key)
+        }
+      }
+    }
+
+    // 3 处理 children
+    const oldChildren = n1.children || []
+    const newChildren = n2.children || []
+
+    // 情况一 newChildren 本身是一个 string
+    if (typeof newChildren === 'string') {
+      if (typeof oldChildren === 'string') {
+        if (newChildren !== oldChildren) {
+          el.textContent = newChildren
+        }
       } else {
-        el.setAttribute(key, value)
+        el.innerHTML = newChildren
+      }
+    } else {
+      // 情况二：newChildren 是一个数组
+      if (typeof oldChildren === 'string') {
+        el.innerHTML = ''
+        newChildren.forEach((item) => {
+          mount(item, el)
+        })
+      } else {
+        // 1 前面有相同节点的元素进行 patch 操作
+        const commonLength = Math.min(oldChildren.length, newChildren.length)
+        for (let i = 0; i< commonLength; i++) {
+          patch(oldChildren[i], newChildren[i])
+        }
+
+        if (newChildren.length >  oldChildren.length) {
+          newChildren.slice(oldChildren.length).forEach((item) => {
+            mount(item, el)
+          })
+        }
+
+        if (newChildren.length < oldChildren.length) {
+          oldChildren.slice(newChildren.length).forEach((item) => {
+            el.removeChild(item.el)
+          })
+        }
       }
     }
   }

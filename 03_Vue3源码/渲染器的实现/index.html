@@ -18,13 +18,13 @@
       h('h2', null, '当前计数为：100'),
       h('button', null, '+1')
     ])
-    console.log(vnode) // { tag: 'div', props: {… }, children: Array(2) }
+    // console.log(vnode) // { tag: 'div', props: {… }, children: Array(2) }
 
     // 2 通过 mount 函数，将 vnode 挂载到 div#app 上  就是将虚拟 dom 挂载到真实 dom 上
     mount(vnode, document.querySelector('#app'))
 
     // 3 创建新的 vnode
-    const vnode1 = h('h2', { class: 'zww', id: 'ggg' }, 'zww')
+    const vnode1 = h('span', { class: 'zww', id: 'ggg' }, 'zww')
     patch(vnode, vnode1)
   </script>
 </body>
