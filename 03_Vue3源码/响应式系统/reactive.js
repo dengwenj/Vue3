@@ -3,32 +3,40 @@ class Dep {
     this.substribers = new Set()
   }
 
-  addEffect(effect) {
-    this.substribers.add(effect)
+  depend() {
+    if (activeEffect) {
+      this.substribers.add(activeEffect)
+    }
   }
 
   notify() {
     this.substribers.forEach((effect) => {
-      console.log(effect)
       effect()
     })
   }
 }
 
+let activeEffect = null
+function watchEffect(effect) {
+  activeEffect = effect
+  d.depend()
+  effect()
+  activeEffect = null
+}
+
+const info = {
+  counter: 100
+}
+
 const d = new Dep()
 
-let n = 100
+watchEffect(function () {
+  console.log(info.counter * 2);
+})
 
-function foo1() {
-  console.log(n * n);
-}
+watchEffect(function () {
+  console.log(info.counter * info.counter)
+})
 
-function foo2() {
-  console.log(n * 100);
-}
-
-d.addEffect(foo1)
-d.addEffect(foo2)
-
-n++
+info.counter++
 d.notify()
