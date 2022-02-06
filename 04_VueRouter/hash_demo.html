@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <a href="#/home">Home</a>
+  <a href="#/about">About</a>
+  <div class="router_review">default</div>
+
+  <script>
+    const el = document.querySelector('.router_review')
+
+    // 这就是监听 hash 改变要做的事情，只是是改变的组件
+    window.addEventListener('hashchange', () => {
+      switch (location.hash) {
+        case '#/home':
+          el.innerHTML = 'home'
+          break
+        case '#/about':
+          el.innerHTML = 'about'
+          break
+        default:
+          el.innerHTML = 'default'
+          break
+      }
+    })
+  </script>
+</body>
+
+</html>
