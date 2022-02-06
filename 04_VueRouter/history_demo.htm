@@ -40,6 +40,7 @@
         const href = aEl.getAttribute("href");
         // history.pushState({}, "", href);
         history.replaceState({}, "", href);
+        console.log(location.pathname);
 
         changeContent();
       })
