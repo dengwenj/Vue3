@@ -28,18 +28,21 @@ const age1 = (prop) => {
   console.log(prop)
 }
 
-const d = ref(null)
+const d = ref(null) // 定义的名字要和模板中的一样
+const div = ref('div')
 
 setTimeout(() => {
-  console.log(d.value.msg);
-  d.value.fn()
-  console.log(d.value.sex); 
+  console.log(d.value);
+  console.log(div.value)
+  // console.log(d.value.msg);
+  // d.value.fn()
+  // console.log(d.value.sex); 
 })
 </script>
 
 <template>
   <div>
-    <div>{{ name }}</div>
+    <div ref="div">{{ name }}</div>
     <Demo ref="d" message="我是demo" @name="name1" @age="age1" />
   </div>
 </template>
