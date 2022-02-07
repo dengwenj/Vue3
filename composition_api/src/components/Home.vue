@@ -4,6 +4,7 @@ import { useStore, mapState } from 'vuex'
 
 import useState from '../hooks/useState';
 import useGetters from '../hooks/useGetters';
+import { INCREMENT_N } from '../store/mutations-types';
 
 const { counter, name, age, sex } = useState(['counter', 'name', 'age', 'sex'])
 const { fullName, zw, fnG } = useGetters(['fullName', 'zw', 'fnG'])
@@ -11,7 +12,13 @@ const { fullName, zw, fnG } = useGetters(['fullName', 'zw', 'fnG'])
 const store = useStore()
 
 const handleIncrement = () => {
-  store.commit('increment')
+  // store.commit('increment')
+  // store.commit('increment', { name: 'dwj', age: 22 })
+  store.commit({
+    type: INCREMENT_N,
+    name: 'dwj', 
+    age: 22 
+  })
 }
 
 const handleDecrement = () => {
