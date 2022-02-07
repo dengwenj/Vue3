@@ -62,6 +62,13 @@ const goback = () => {
     <router-link :to="`/user/${name}`">用户</router-link>
     <button @click="handleClick(1)">关于</button>
     <button @click="goback">前进后退</button>
-    <router-view />
+
+    <router-view v-slot="{ Component }">
+      <transition name="">
+        <keep-alive>
+          <component :is='Component'></component>
+        </keep-alive>
+      </transition>
+    </router-view>
   </div>
 </template>
