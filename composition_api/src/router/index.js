@@ -11,7 +11,7 @@ import { createRouter, createWebHistory, createWebHashHistory } from 'vue-router
 const routes = [
   {
     path: '/',
-    redirect: '/home' // 重定向
+    redirect: '/home', // 重定向
   },
   {
     path: '/home',
@@ -21,7 +21,17 @@ const routes = [
     meta: {
       name: 'dwj',
       age: 22
-    }
+    },
+    children: [
+      {
+        path: 'message',
+        component: import('../pages/HomeMessage.vue')
+      },
+      {
+        path: 'goods',
+        component: import('../pages/HomeGoods.vue')
+      }
+    ]
   },
   {
     path: '/about',
