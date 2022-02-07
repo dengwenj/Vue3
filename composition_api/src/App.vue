@@ -48,7 +48,16 @@ const goback = () => {
 
 <template>
   <div>
-    <router-link to="/home">首页</router-link>
+    <!-- props: href 跳转的链接 -->
+    <!-- props: route对象 -->
+    <!-- props: navigate 导航函数 -->
+    <!-- props: isActive 是否当前处于活跃的状态 -->
+    <!-- props: isExactActive 是否当前处于精确的活跃状态 -->
+    <router-link to="/home" v-slot="props" custom>
+      <button @click="props.navigate">{{props.href}}</button>
+      <button @click="props.navigate">{{props.isActive}}</button>
+      <button @click="props.navigate">{{props.isExactActive}}</button>
+    </router-link>
     <router-link to="/about">关于</router-link>
     <router-link :to="`/user/${name}`">用户</router-link>
     <button @click="handleClick(1)">关于</button>
