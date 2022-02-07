@@ -9,7 +9,7 @@ import pluginsFunction from './09_plugins/plugins_function'
 const app = createApp(App)
 
 // 安装路由
-app.use(router)
+app.use(router) // 返回的是 app 对象
 
 app.use(pluginsObject)
 app.use(pluginsFunction)
@@ -30,4 +30,5 @@ directives(app)
 //   }
 // })
 
-app.mount('#app')
+const c = app.mount('#app') // mount 返回的是组件对象
+console.log(c);
