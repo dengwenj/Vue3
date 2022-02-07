@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 
 import router from './router'
+import vuex from './store'
 import App from './App.vue'
 import directives from './08_directives'
 import pluginsObject from './09_plugins/plugins_object'
@@ -10,6 +11,8 @@ const app = createApp(App)
 
 // 安装路由
 app.use(router) // 返回的是 app 对象
+// 安装 vuex
+app.use(vuex)
 
 app.use(pluginsObject)
 app.use(pluginsFunction)

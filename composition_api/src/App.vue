@@ -13,6 +13,7 @@ import { useRouter } from 'vue-router'
 // import Home from './05_setup的顶层编写方式/Home.vue'
 // import Home from "./06_jsx的使用/Home.vue"
 // import Home from "./07_自定义指令/Home.vue"
+import Home from './components/Home.vue'
 
 // export default {
 //   components: {
@@ -53,7 +54,7 @@ const goback = () => {
     <!-- props: navigate 导航函数 -->
     <!-- props: isActive 是否当前处于活跃的状态 -->
     <!-- props: isExactActive 是否当前处于精确的活跃状态 -->
-    <router-link to="/home" v-slot="props" custom>
+    <!-- <router-link to="/home" v-slot="props" custom>
       <button @click="props.navigate">{{props.href}}</button>
       <button @click="props.navigate">{{props.isActive}}</button>
       <button @click="props.navigate">{{props.isExactActive}}</button>
@@ -70,6 +71,8 @@ const goback = () => {
           <component :is='Component'></component>
         </keep-alive>
       </transition>
-    </router-view>
+    </router-view> -->
+
+    <Home />
   </div>
 </template>
