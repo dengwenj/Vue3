@@ -2,15 +2,22 @@
 import { computed, toRefs } from 'vue'
 import { useStore, mapState } from 'vuex'
 
+import useState from '../hooks/useState';
+
+const { counter, name, age, sex } = useState(['counter', 'name', 'age', 'sex'])
+
 const store = useStore()
 
-const objKeyFns = mapState(['counter', 'name', 'age', 'sex'])
-// { name: ref, age: ref, sex: ref }
-const storeState = {}
-Object.keys(objKeyFns).forEach(fnKey => {
-  storeState[fnKey] = computed(objKeyFns[fnKey].bind({ $store: store }))
-})
-const { counter, name, age, sex } = storeState
+// const objKeyFns = mapState(['counter', 'name', 'age', 'sex'])
+// const obj = mapState({
+//   sCounter: state => state.counter
+// })
+// // { name: ref, age: ref, sex: ref }
+// const storeState = {}
+// Object.keys(objKeyFns).forEach(fnKey => {
+//   storeState[fnKey] = computed(objKeyFns[fnKey].bind({ $store: store }))
+// })
+// const { counter, name, age, sex } = storeState
 
 const handleIncrement = () => {
   store.commit('increment')
