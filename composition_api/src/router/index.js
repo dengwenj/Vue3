@@ -16,12 +16,22 @@ const routes = [
   {
     path: '/home',
     // component: Home
-    component: () => import('../pages/Home.vue') // 路由懒加载
+    component: () => import('../pages/Home.vue'), // 路由懒加载
+    name: 'home',
+    meta: {
+      name: 'dwj',
+      age: 22
+    }
   },
   {
     path: '/about',
     // component: About
-    component: () => import('../pages/About.vue') // 路由懒加载
+    component: () => import('../pages/About.vue'), // 路由懒加载
+    name: 'about'
+  },
+  {
+    path: '/user/:username', // 动态路由匹配
+    component: () => import('../pages/User.vue')
   }
 ]
 
