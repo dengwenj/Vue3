@@ -24,7 +24,12 @@ const store = useStore()
 // const handleDecrement = () => {
 //   store.commit('decrement')
 // }
-const { increment, decrement } = mapMutations([INCREMENT, 'decrement'])
+const { add } = mapMutations({ // 对象的写法
+  add: INCREMENT
+})
+const increment3 = add.bind({ $store: store }) // 这里要绑定 this
+
+const { increment, decrement } = mapMutations([INCREMENT, 'decrement']) // 数组的写法
 const increment1 = increment.bind({ $store: store }) // 这里要绑定 this
 const decrement1 = decrement.bind({ $store: store })
 
@@ -39,6 +44,7 @@ const decrement1 = decrement.bind({ $store: store })
     <h1>{{ age }}</h1>
     <h1>{{ sex }}</h1>
     <button @click="increment1({n: 10})">+1</button>
+    <button @click="increment3({n: 10})">+1</button>
     <button @click="decrement1">-1</button>
 
     <!-- <h2>{{ store.getters.fullName }}</h2>
