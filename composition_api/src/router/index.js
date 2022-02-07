@@ -32,6 +32,11 @@ const routes = [
   {
     path: '/user/:username', // 动态路由匹配
     component: () => import('../pages/User.vue')
+  },
+  {
+    // 匹配不到任何路径会来到这里
+    path: '/:pathMatch(.*)',
+    component: () => import('../pages/NotFound.vue')
   }
 ]
 
