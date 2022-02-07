@@ -5,6 +5,7 @@
 </template> -->
 
 <script setup>
+import { useRouter } from 'vue-router'
 // import Home from './01_compositionAPI基本使用/Home.vue'
 // import Home from './02_RefAPI的补充/Home.vue'
 // import Home from './03_computed和watch/Home.vue'
@@ -22,6 +23,27 @@
 //   }
 // }
 const name = 'dengwenj'
+const router = useRouter()
+
+const handleClick = (one) => {
+  console.log(one);
+  router.push({
+    // path: '/about',
+    // query: {
+    //   name: 'dwj',
+    //   age: 22
+    // }
+    name: 'about',
+    params: {
+      name: 'dwj',
+      age: 22
+    }
+  })
+}
+
+const goback = () => {
+  router.go(1)
+}
 </script>
 
 <template>
@@ -29,6 +51,8 @@ const name = 'dengwenj'
     <router-link to="/home">首页</router-link>
     <router-link to="/about">关于</router-link>
     <router-link :to="`/user/${name}`">用户</router-link>
+    <button @click="handleClick(1)">关于</button>
+    <button @click="goback">前进后退</button>
     <router-view />
   </div>
 </template>

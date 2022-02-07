@@ -24,6 +24,10 @@ const routes = [
     },
     children: [
       {
+        path: '/home',
+        redirect: '/home/message'
+      },
+      {
         path: 'message',
         component: import('../pages/HomeMessage.vue')
       },
