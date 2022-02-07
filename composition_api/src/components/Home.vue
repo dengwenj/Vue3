@@ -38,5 +38,7 @@ const handleDecrement = () => {
     <h1>{{ sex }}</h1>
     <button @click="handleIncrement">+1</button>
     <button @click="handleDecrement">-1</button>
+
+    <h2>{{ store.getters.fullName }}</h2>
   </div>
 </template>
