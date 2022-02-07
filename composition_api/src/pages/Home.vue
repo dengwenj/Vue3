@@ -11,4 +11,5 @@ console.log(router);
   <router-view />
   <router-link to="/home/message">消息</router-link>
   <router-link to="/home/goods">商品</router-link>
+  <router-link to="/home/monent">动态</router-link>
 </template>

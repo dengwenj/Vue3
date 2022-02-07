@@ -60,4 +60,16 @@ const router = createRouter({
   history: createWebHashHistory()
 })
 
+// 动态添加路由
+router.addRoute({
+  path: '/admin',
+  component: import('../pages/Admin.vue')
+})
+
+// 动态添加子路由
+router.addRoute('home', {
+  path: '/home/monent',
+  component: import('../pages/HomeMonent.vue')
+})
+
 export default router
