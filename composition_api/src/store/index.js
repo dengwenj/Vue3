@@ -24,6 +24,11 @@ const store = createStore({
     },
     zw(state, getters) {
       return 'zw'
+    },
+    fnG(state, getters) {
+      return function(n) {
+        return state.age + n
+      }
     }
   }
 })
