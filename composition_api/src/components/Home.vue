@@ -1,29 +1,33 @@
 <script setup>
 import { computed, toRefs } from 'vue'
-import { useStore, mapState } from 'vuex'
+import { useStore, mapState, mapMutations } from 'vuex'
 
 import useState from '../hooks/useState';
 import useGetters from '../hooks/useGetters';
-import { INCREMENT_N } from '../store/mutations-types';
+import { INCREMENT } from '../store/mutations-types';
 
 const { counter, name, age, sex } = useState(['counter', 'name', 'age', 'sex'])
 const { fullName, zw, fnG } = useGetters(['fullName', 'zw', 'fnG'])
 
 const store = useStore()
 
-const handleIncrement = () => {
-  // store.commit('increment')
-  // store.commit('increment', { name: 'dwj', age: 22 })
-  store.commit({
-    type: INCREMENT_N,
-    name: 'dwj', 
-    age: 22 
-  })
-}
+// const handleIncrement = () => {
+//   // store.commit('increment')
+//   // store.commit('increment', { name: 'dwj', age: 22 })
+//   store.commit({
+//     type: INCREMENT,
+//     name: 'dwj', 
+//     age: 22 
+//   })
+// }
 
-const handleDecrement = () => {
-  store.commit('decrement')
-}
+// const handleDecrement = () => {
+//   store.commit('decrement')
+// }
+const { increment, decrement } = mapMutations([INCREMENT, 'decrement'])
+const increment1 = increment.bind({ $store: store }) // 这里要绑定 this
+const decrement1 = decrement.bind({ $store: store })
+
 </script>
 
 <template>
@@ -34,8 +38,8 @@ const handleDecrement = () => {
     <h1>{{ name }}</h1>
     <h1>{{ age }}</h1>
     <h1>{{ sex }}</h1>
-    <button @click="handleIncrement">+1</button>
-    <button @click="handleDecrement">-1</button>
+    <button @click="increment1({n: 10})">+1</button>
+    <button @click="decrement1">-1</button>
 
     <!-- <h2>{{ store.getters.fullName }}</h2>
     <h2>{{ store.getters.fnG(17) }}</h2> -->
