@@ -44,6 +44,14 @@ const asyncIncrement1 = asyncIncrement.bind({ $store: store })
 //   })
 // })
 
+const homeCommit = () => {
+  store.commit('home/incrementHome')
+}
+
+const incrementAsync = () => {
+  store.dispatch('home/incrementAsync')
+}
+
 </script>
 
 <template>
@@ -65,5 +73,8 @@ const asyncIncrement1 = asyncIncrement.bind({ $store: store })
     <!-- <h2>{{ zw }}</h2> -->
     <!-- <h2>{{ fnG(16) }}</h2> -->
     <h2>{{ store.state.home.homeCounter }}</h2>
+    <h2>{{ store.getters['home/hh'] }}</h2>
+    <button @click="homeCommit">homeCommit</button>
+    <button @click="incrementAsync">incrementAsync</button>
   </div>
 </template>
