@@ -20,6 +20,14 @@ const store = createStore({
       state.counter--
     }
   },
+  actions: {
+    asyncIncrement(context, payload) {
+      console.log(payload); // 异步加
+      setTimeout(() => {
+        context.commit('increment')
+      }, 1000);
+    }
+  },
   getters: {
     fullName(state, getters) {
       console.log(getters) // { fullName: "dengwenjieandzw", zw: "zw" }

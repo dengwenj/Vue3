@@ -1,6 +1,6 @@
 <script setup>
 import { computed, toRefs } from 'vue'
-import { useStore, mapState, mapMutations } from 'vuex'
+import { useStore, mapState, mapMutations, mapActions } from 'vuex'
 
 import useState from '../hooks/useState';
 import useGetters from '../hooks/useGetters';
@@ -33,6 +33,9 @@ const { increment, decrement } = mapMutations([INCREMENT, 'decrement']) // 数�
 const increment1 = increment.bind({ $store: store }) // 这里要绑定 this
 const decrement1 = decrement.bind({ $store: store })
 
+const { asyncIncrement } = mapActions(['asyncIncrement'])
+const asyncIncrement1 = asyncIncrement.bind({ $store: store })
+
 </script>
 
 <template>
@@ -46,6 +49,7 @@ const decrement1 = decrement.bind({ $store: store })
     <button @click="increment1({n: 10})">+1</button>
     <button @click="increment3({n: 10})">+1</button>
     <button @click="decrement1">-1</button>
+    <button @click="asyncIncrement1('异步加')">异步加</button>
 
     <!-- <h2>{{ store.getters.fullName }}</h2>
     <h2>{{ store.getters.fnG(17) }}</h2> -->
