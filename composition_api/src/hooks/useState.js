@@ -1,4 +1,4 @@
-import { mapState } from "vuex" 
+import { mapState, createNamespacedHelpers } from "vuex" 
 
 import useMap from "./useMap"
 
@@ -14,6 +14,10 @@ import useMap from "./useMap"
 //   return storeState
 // }
 
-export default function (mappedState) {
-  return useMap(mappedState, mapState)
+export default function (moduleName, mappedState) {
+  let mapFn = mapState
+  if (typeof moduleName === 'string' && moduleName.length > 0) {
+    mapFn = createNamespacedHelpers(moduleName).mapState
+  }
+  return useMap(mappedState, mapFn)
 }
