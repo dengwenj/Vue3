@@ -26,6 +26,14 @@ const store = createStore({
       setTimeout(() => {
         context.commit('increment')
       }, 1000);
+    },
+    returnPromise(context) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          context.commit('decrement')
+          resolve(context.state.counter)
+        }, 1000)
+      })
     }
   },
   getters: {

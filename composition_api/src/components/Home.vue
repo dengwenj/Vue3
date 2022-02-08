@@ -1,5 +1,5 @@
 <script setup>
-import { computed, toRefs } from 'vue'
+import { computed, toRefs, onMounted } from 'vue'
 import { useStore, mapState, mapMutations, mapActions } from 'vuex'
 
 import useState from '../hooks/useState';
@@ -35,6 +35,14 @@ const decrement1 = decrement.bind({ $store: store })
 
 const { asyncIncrement } = mapActions(['asyncIncrement'])
 const asyncIncrement1 = asyncIncrement.bind({ $store: store })
+
+
+onMounted(() => {
+  const promise = store.dispatch('returnPromise') // 想要知道是否成功返回结果，可以返回一个 promise 来看
+  promise.then((res) => {
+    console.log(res);
+  })
+})
 
 </script>
 
