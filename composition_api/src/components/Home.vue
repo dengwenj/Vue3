@@ -1,5 +1,5 @@
 <script setup>
-import { computed, toRefs, onMounted } from 'vue'
+import { computed, toRefs, onMounted, nextTick, watch, ref } from 'vue'
 import { useStore, createNamespacedHelpers } from 'vuex'
 
 import useState from '../hooks/useState';
@@ -13,6 +13,20 @@ const { hh } = useGetters('home', ['hh'])
 
 const store = useStore()
 console.log(store);
+
+// const message = ref('hh')
+// const myRef = ref(null)
+
+// watch(message, () => {
+//   console.log(message.value);
+// })
+
+// const click = () => {
+//   nextTick(() => {
+//     console.log(myRef.value);
+//   })
+//   message.value += '~'
+// }
 
 const { mapMutations, mapActions } = createNamespacedHelpers('home')
 
@@ -90,5 +104,8 @@ const incrementAsync1 = incrementAsync.bind({ $store: store })
 
     <h2>{{ homeCounter }}</h2>
     <h2>{{ hh }}</h2>
+
+    <!-- <button @click="click">点击</button>
+    <h2 ref="myRef">{{ message }}</h2> -->
   </div>
 </template>

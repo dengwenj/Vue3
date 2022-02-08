@@ -18,6 +18,8 @@ export default function (moduleName, mappedState) {
   let mapFn = mapState
   if (typeof moduleName === 'string' && moduleName.length > 0) {
     mapFn = createNamespacedHelpers(moduleName).mapState
+  } else {
+    moduleName = mappedState
   }
   return useMap(mappedState, mapFn)
 }
