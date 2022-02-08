@@ -10,7 +10,7 @@ const { counter, name, age, sex } = useState(['counter', 'name', 'age', 'sex'])
 const { fullName, zw, fnG } = useGetters(['fullName', 'zw', 'fnG'])
 
 const store = useStore()
-
+console.log(store);
 // const handleIncrement = () => {
 //   // store.commit('increment')
 //   // store.commit('increment', { name: 'dwj', age: 22 })
@@ -37,12 +37,12 @@ const { asyncIncrement } = mapActions(['asyncIncrement'])
 const asyncIncrement1 = asyncIncrement.bind({ $store: store })
 
 
-onMounted(() => {
-  const promise = store.dispatch('returnPromise') // 想要知道是否成功返回结果，可以返回一个 promise 来看
-  promise.then((res) => {
-    console.log(res);
-  })
-})
+// onMounted(() => {
+//   const promise = store.dispatch('returnPromise') // 想要知道是否成功返回结果，可以返回一个 promise 来看
+//   promise.then((res) => {
+//     console.log(res);
+//   })
+// })
 
 </script>
 
@@ -61,8 +61,9 @@ onMounted(() => {
 
     <!-- <h2>{{ store.getters.fullName }}</h2>
     <h2>{{ store.getters.fnG(17) }}</h2> -->
-    <h2>{{ fullName }}</h2>
-    <h2>{{ zw }}</h2>
-    <h2>{{ fnG(16) }}</h2>
+    <!-- <h2>{{ fullName }}</h2> -->
+    <!-- <h2>{{ zw }}</h2> -->
+    <!-- <h2>{{ fnG(16) }}</h2> -->
+    <h2>{{ store.state.home.homeCounter }}</h2>
   </div>
 </template>
