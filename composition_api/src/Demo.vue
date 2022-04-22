@@ -1,6 +1,8 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
 
+import Demo2 from './Demo2.vue'
+
 defineProps({
   message: {
     type: String,
@@ -21,4 +23,5 @@ const handleDWJ = () => {
   <div>{{ message }}</div>
   <div>{{ gggg }}</div>
   <button @click="handleDWJ">传给父</button>
+  <Demo2 />
 </template>

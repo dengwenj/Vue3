@@ -8,7 +8,8 @@ import {
   toRefs,
   computed,
   watch,
-  watchEffect
+  watchEffect,
+  provide
 } from 'vue'
 
 import Demo from './Demo.vue'
@@ -24,6 +25,9 @@ const person = reactive({
 })
 // const age = toRef(person, 'age')
 const { name, age, sex } = toRefs(person)
+
+// 传给孙子组件数据
+provide('provide1', '孙子')
 
 // 钩子
 onBeforeMount(() => {
