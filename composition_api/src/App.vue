@@ -89,9 +89,21 @@ const handleSex = () => {
 const handleHobby1 = () => {
   person.hobby[0] = '不当社会人了'
 }
+
+// 多个话可以写成一个函数，在函数参数里面获取 dom 比如 v-for 的时候
+// 这个函数执行了3次，因为循环了3次
+const arrEl = []
+const handleRef = (element) => {
+  arrEl.push(element)
+  console.log(arrEl)
+}
+const arr = ['arr1', 'arr2', 'arr3']
 </script>
 
 <template>
+  <ul>
+    <li v-for="item in arr" :ref="handleRef">{{ item }}</li>
+  </ul>
   <h1>{{count}}</h1>
   <h2>{{age}}</h2>
   <h2>{{name}}</h2>
