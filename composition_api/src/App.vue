@@ -105,6 +105,7 @@ const handleRef = (element) => {
   console.log(arrEl)
 }
 const arr = ['arr1', 'arr2', 'arr3']
+const gggg = ref('ggg')
 </script>
 
 <template>
@@ -121,6 +122,6 @@ const arr = ['arr1', 'arr2', 'arr3']
   <button @click="handleAge">修改年龄</button>
   <button @click="handleSex">修改性别</button>
   <button @click="handleHobby1">修改元素1</button>
-  <Demo message="传给子" @dwj="dengwj" />
+  <Demo message="传给子" @dwj="dengwj" v-model:gggg="gggg" />
   <div>{{ dwj || '还没点击' }}</div>
 </template>
