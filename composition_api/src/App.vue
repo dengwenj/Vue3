@@ -11,8 +11,11 @@ import {
   watchEffect
 } from 'vue'
 
+import Demo from './Demo.vue'
+
 // 状态
 const count = ref(0)
+const dwj = ref(null)
 const person = reactive({
   name: 'dengwj',
   age: 22,
@@ -90,6 +93,10 @@ const handleHobby1 = () => {
   person.hobby[0] = '不当社会人了'
 }
 
+const dengwj = (prop) => {
+  dwj.value = prop
+}
+
 // 多个话可以写成一个函数，在函数参数里面获取 dom 比如 v-for 的时候
 // 这个函数执行了3次，因为循环了3次
 const arrEl = []
@@ -114,4 +121,6 @@ const arr = ['arr1', 'arr2', 'arr3']
   <button @click="handleAge">修改年龄</button>
   <button @click="handleSex">修改性别</button>
   <button @click="handleHobby1">修改元素1</button>
+  <Demo message="传给子" @dwj="dengwj" />
+  <div>{{ dwj || '还没点击' }}</div>
 </template>
